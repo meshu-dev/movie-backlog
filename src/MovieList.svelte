@@ -1,9 +1,6 @@
 <script>
 	import { movies } from './store.js';
 	import MovieRow from './MovieRow.svelte';
-
-	//movies.set(['Demolition Man', 'Aliens', 'The Thing', 'Die Hard']);
-	console.log('movies', $movies);
 </script>
 
 <div id="movie-list">
