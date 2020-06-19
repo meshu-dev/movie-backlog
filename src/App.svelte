@@ -1,23 +1,16 @@
 <script>
-	let movies = [
-		'Demolition Man',
-		'Aliens',
-		'The Thing'
-	];
+	import AddForm from './AddForm.svelte';
+	import MovieList from './MovieList.svelte';
 </script>
+
+<svelte:head>
+	<title>Movie Backlog</title>
+</svelte:head>
 
 <main>
 	<h1>Movie Backlog</h1>
-	<button on:click={add}>
-		Add Movie
-	</button>
-	<div id="movie-list">
-		<ul>
-			{#each movies as movie, i}
-				<li>{movie}</li>
-			{/each}
-		</ul>
-	</div>
+	<AddForm />
+	<MovieList />
 </main>
 
 <style>
@@ -37,13 +30,5 @@
 		text-transform: uppercase;
 		font-size: 4em;
 		font-weight: 100;
-	}
-
-	#movie-list {
-		font-size: 2rem;
-	}
-
-	#movie-list li {
-		margin-bottom: 1rem;
 	}
 </style>
