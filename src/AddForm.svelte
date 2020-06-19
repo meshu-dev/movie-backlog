@@ -2,13 +2,20 @@
 	import { movies } from './store.js';
 
 	let showAddForm = false,
+		validationMsg = '',
 		movieName = '';
 
 	function addFormToggle() {
 		showAddForm = !showAddForm;
+		validationMsg = '';
 	}
 
 	function submit() {
+		if (movieName.length === 0) {
+			validationMsg = 'Movie name must not be empty';
+			return;
+		}
+
 		movies.update(m => {
 			m.push(movieName);
 			return m;
@@ -20,7 +27,10 @@
 </script>
 
 {#if showAddForm}
-	<input bind:value={movieName}>
+	{#if validationMsg}
+		<div class="error-msg">{validationMsg}</div>
+	{/if}
+	<input type="text" bind:value={movieName} required>
 	<button on:click={submit}>
 		Add 
 	</button>

@@ -64,3 +64,9 @@ button:not(:disabled):active {
 button:focus {
 	border-color: #666;
 }
+
+.error-msg {
+	font-weight: bold;
+	margin: 1rem 0;
+	color: #DC143C;
+}

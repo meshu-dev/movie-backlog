@@ -4,32 +4,45 @@
 	export let title;
 	export let movieIndex;
 
-	let showEditField = false;
+	let showEditField = false,
+		validationMsg = '',
+		movieName = '';
 
-	function editFormToggle() {
-		showEditField = !showEditField;
+	function showForm() {
+		movieName = title;
+		showEditField = true;
+	}
+
+	function hideForm() {
+		movieName = '';
+		validationMsg = '';
+		showEditField = false;
 	}
 
 	function submit() {
-		movies.update(m => {
-			m[movieIndex] = title;
-			return m;
-		});
-
+		if (movieName.length === 0) {
+			validationMsg = 'Movie name must not be empty';
+			return;
+		}
+		
+		title = movieName;
 		showEditField = false;
 	}
 </script>
 
 {#if showEditField}
-	<input bind:value={title}>
+	{#if validationMsg}
+		<div class="error-msg">{validationMsg}</div>
+	{/if}
+	<input bind:value={movieName}>
 	<button on:click={submit}>
 		Edit
 	</button>
-	<button on:click={editFormToggle}>
+	<button on:click={hideForm}>
 		Cancel 
 	</button>
 {:else}
-	<span class="movie-title" on:click={editFormToggle}>{title}</span>
+	<span class="movie-title" on:click={showForm}>{title}</span>
 {/if}
 
 <style>

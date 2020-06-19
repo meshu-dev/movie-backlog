@@ -27,7 +27,6 @@
 	}
 
 	h1 {
-		text-transform: uppercase;
 		font-size: 4em;
 		font-weight: 100;
 	}
