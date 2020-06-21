@@ -1,6 +1,6 @@
 <script>
 	import { movies } from './store.js';
-	import { Button } from 'sveltestrap';
+	import { Input, Button } from 'sveltestrap';
 
 	let showAddForm = false,
 		validationMsg = '',
@@ -28,18 +28,28 @@
 </script>
 
 {#if showAddForm}
-	{#if validationMsg}
-		<div class="error-msg">{validationMsg}</div>
-	{/if}
-	<input type="text" bind:value={movieName} required>
-	<Button color="primary" on:click={submit}>
-	  Add
-	</Button>
-	<Button color="dark" on:click={addFormToggle}>
-	  Cancel
-	</Button>
+	<form id="add-form">
+		{#if validationMsg}
+			<div class="error-msg">{validationMsg}</div>
+		{/if}
+		<Input type="text" bind:value={movieName} required />
+		<Button color="primary" on:click={submit}>
+		  Add
+		</Button>
+		<Button color="dark" on:click={addFormToggle}>
+		  Cancel
+		</Button>
+	</form>
 {:else}
 	<Button color="dark" on:click={addFormToggle}>
 	  Add Movie 
 	</Button>
 {/if}
+
+<style>
+	#add-form {
+		display: flex;
+		width: 21rem;
+		justify-content: space-around;
+	}
+</style>

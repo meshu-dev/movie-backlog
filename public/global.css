@@ -43,6 +43,10 @@ input:disabled {
 	color: #ccc;
 }
 
+input[type="text"] {
+	width: 12rem;
+}
+
 input[type="range"] {
 	height: 0;
 }
