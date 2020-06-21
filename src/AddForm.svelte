@@ -6,14 +6,22 @@
 		validationMsg = '',
 		movieName = '';
 
-	function addFormToggle() {
+	const addFormToggle = () => {
 		showAddForm = !showAddForm;
 		validationMsg = '';
+		movieName = '';
 	}
 
-	function submit() {
+	const submit = () => {
 		if (movieName.length === 0) {
-			validationMsg = 'Movie name must not be empty';
+			//validationMsg = 'Movie name must not be empty';
+			return;
+		}
+
+		let nameIndex = $movies.indexOf(movieName);
+
+		if (nameIndex > -1) {
+			validationMsg = 'Movie name already added to list';
 			return;
 		}
 
@@ -22,17 +30,16 @@
 			return m;
 		});
 
-		movieName = '';
-		showAddForm = false;
+		addFormToggle();
 	}
 </script>
 
 {#if showAddForm}
-	<form id="add-form">
-		{#if validationMsg}
-			<div class="error-msg">{validationMsg}</div>
-		{/if}
-		<Input type="text" bind:value={movieName} required />
+	{#if validationMsg}
+		<div class="error-msg">{validationMsg}</div>
+	{/if}
+	<form id="add-form" onsubmit="return false">
+		<Input type="text" bind:value={movieName} placeholder="Enter movie name" required />
 		<Button color="primary" on:click={submit}>
 		  Add
 		</Button>

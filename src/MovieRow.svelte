@@ -1,39 +1,41 @@
 <script>
 	import { movies } from './store.js';
 	import { Button } from 'sveltestrap';
+	import DeletePopup from './DeletePopup.svelte';
 	
 	export let title;
 	export let movieIndex;
 
 	let showEditField = false,
 		validationMsg = '',
-		movieName = '';
+		movieName = '',
+		deletePopup = false;
 
-	function showForm() {
+	const showForm = () => {
 		movieName = title;
 		showEditField = true;
 	}
 
-	function hideForm() {
+	const hideForm = () => {
 		movieName = '';
 		validationMsg = '';
 		showEditField = false;
 	}
 
-	function editAction() {
+	const editAction = () => {
 		if (movieName.length === 0) {
 			validationMsg = 'Movie name must not be empty';
 			return;
 		}
-		
+
+		hideForm();
 		title = movieName;
-		showEditField = false;
 	}
 
-	function deleteAction() {
-		let doDelete = window.confirm('Are you sure you want to delete this movie?');
+	const showDeletePopup = () => (deletePopup = true);
 
-		if (doDelete === true) {
+	const deleteAction = (event) => {
+		if (event.detail.confirm === true) {
 			movies.update(m => {
 				m.splice(movieIndex, 1);
 				return m;
@@ -52,12 +54,13 @@
 	<Button color="primary" on:click={editAction}>
 	  Edit
 	</Button>
-	<Button color="danger" on:click={deleteAction}>
+	<Button color="danger" on:click={showDeletePopup}>
 	  Delete 
 	</Button>
 	<Button color="dark" on:click={hideForm}>
 	  Cancel
 	</Button>
+	<DeletePopup bind:open={deletePopup} on:response={deleteAction} />
 {:else}
 	<span class="movie-title" on:click={showForm}>{title}</span>
 {/if}
