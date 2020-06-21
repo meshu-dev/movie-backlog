@@ -8,7 +8,9 @@
 </svelte:head>
 
 <header>
-	<section>Movie Backlog</section>
+	<section>
+		<span>Movie Backlog</span>
+	</section>
 </header>
 <main>
 	<AddForm />

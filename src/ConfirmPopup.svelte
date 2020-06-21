@@ -2,7 +2,9 @@
 	import { createEventDispatcher } from 'svelte';
 	import { Button, Modal, ModalBody, ModalFooter, ModalHeader } from 'sveltestrap';
 
+	export let title;
 	export let open = false;
+
 	const toggle = () => (open = !open);
 	const dispatch = createEventDispatcher();
 
@@ -21,7 +23,7 @@
 
 <Modal isOpen={open} {toggle}>
 	<ModalBody>
-		Are you sure you want to delete this movie?
+		{title}
 	</ModalBody>
 	<ModalFooter>
 		<Button color="primary" on:click={confirm}>
