@@ -1,5 +1,6 @@
 <script>
 	import { movies } from './store.js';
+	import { Button } from 'sveltestrap';
 	
 	export let title;
 	export let movieIndex;
@@ -48,9 +49,15 @@
 		<div class="error-msg">{validationMsg}</div>
 	{/if}
 	<input bind:value={movieName}>
-	<button on:click={editAction}>Edit</button>
-	<button on:click={deleteAction}>Delete</button>
-	<button on:click={hideForm}>Cancel</button>
+	<Button color="primary" on:click={editAction}>
+	  Edit
+	</Button>
+	<Button color="danger" on:click={deleteAction}>
+	  Delete 
+	</Button>
+	<Button color="dark" on:click={hideForm}>
+	  Cancel
+	</Button>
 {:else}
 	<span class="movie-title" on:click={showForm}>{title}</span>
 {/if}

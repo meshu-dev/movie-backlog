@@ -7,13 +7,31 @@
 	<title>Movie Backlog</title>
 </svelte:head>
 
+<header>
+	<section>Movie Backlog</section>
+</header>
 <main>
-	<h1>Movie Backlog</h1>
 	<AddForm />
 	<MovieList />
 </main>
 
 <style>
+	header {
+		box-shadow: 0 -0.4rem 0.9rem 0.2rem rgba(0,0,0,.5);
+		background-color: #FF3E00;
+		height: 4rem;
+	}
+
+	header section {
+		margin: 0 auto;
+		height: inherit;
+		font-size: 1.5rem;
+		display: flex;
+		align-items: center;
+		width: 50rem;
+		color: #FFF;
+	}
+
 	main {
 		margin: 0 auto;
 		padding: 1em;
