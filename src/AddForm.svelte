@@ -30,31 +30,34 @@
     });
 </script>
 
-{#if showAddForm}
-    {#if $errors.title}
-    	<small class="error-msg">{$errors.title}</small>
-    {/if}
-	<form id="add-form" on:submit={handleSubmit}>
-		<Input
-			type="text"
-			name="title"
-			bind:value={$form.title}
-			placeholder="Enter movie name" required />
-		<Button color="primary" type="submit">
-		  Add
-		</Button>
+<div id="add-movie">
+	{#if showAddForm}
+	    {#if $errors.title}
+	    	<small class="error-msg">{$errors.title}</small>
+	    {/if}
+		<form id="add-form" on:submit={handleSubmit}>
+			<Input
+				type="text"
+				name="title"
+				bind:value={$form.title}
+				placeholder="Enter movie name"
+				required />
+			<Button color="primary" type="submit">
+			  Add
+			</Button>
+			<Button color="dark" on:click={addFormToggle}>
+			  Cancel
+			</Button>
+		</form>
+	{:else}
 		<Button color="dark" on:click={addFormToggle}>
-		  Cancel
+		  Add Movie 
 		</Button>
-	</form>
-{:else}
-	<Button color="dark" on:click={addFormToggle}>
-	  Add Movie 
-	</Button>
-{/if}
+	{/if}
+</div>
 
 <style>
-	#add-form {
+	#add-movie form {
 		display: flex;
 		width: 21rem;
 		justify-content: space-around;
