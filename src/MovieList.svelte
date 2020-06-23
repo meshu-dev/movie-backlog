@@ -22,7 +22,6 @@
 		font-size: 1.2rem;
 		margin-top: 1rem;
 	}
-
 	#movie-list li {
 		margin-bottom: 1rem;
 	}
