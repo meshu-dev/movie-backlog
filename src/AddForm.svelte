@@ -33,7 +33,7 @@
 <div id="add-movie">
 	{#if showAddForm}
 	    {#if $errors.title}
-	    	<small class="error-msg">{$errors.title}</small>
+	    	<small class="error-msg">{ $errors.title }</small>
 	    {/if}
 		<form id="add-form" on:submit={handleSubmit}>
 			<Input
